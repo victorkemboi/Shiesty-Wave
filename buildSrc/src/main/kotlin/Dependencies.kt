@@ -11,6 +11,9 @@ object Versions {
     const val jUnit = "4.13.2"
     const val jUnitExt = "1.1.2"
     const val espressoCore = "3.3.0"
+
+    const val kotlin = "1.4.32"
+    const val androidToolsGradle = "7.0.0-beta02"
 }
 
 object BuildPlugins {
@@ -31,6 +34,11 @@ object BuildPlugins {
     const val safeargs = "androidx.navigation.safeargs.kotlin"
     const val googleServices = "com.google.gms.google-services"
     const val firebaseCrashlytics = "com.google.firebase.crashlytics"
+}
+
+object GradlePlugin {
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val android = "com.android.tools.build:gradle:${Versions.androidToolsGradle}"
 }
 
 object Libraries {
