@@ -77,6 +77,6 @@ object AndroidSdk {
     const val compileSdkVersion = 30
     const val buildToolsVersion = "30.0.3"
     const val targetSdkVersion = compileSdkVersion
-    const val versionCode = 6
-    const val versionName = "0.0.4"
+    const val versionCode = 1
+    const val versionName = "0.0.1"
 }

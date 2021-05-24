@@ -16,3 +16,5 @@ local.properties
 
 buildSrc/build/*
 buildSrc/.gradle/*
+buildSrc/.gradle/
+buildSrc/build/

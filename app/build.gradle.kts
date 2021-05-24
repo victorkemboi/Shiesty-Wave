@@ -40,6 +40,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
     }
+    dynamicFeatures.addAll(
+        mutableSetOf(":onboarding")
+    )
 }
 
 dependencies {
