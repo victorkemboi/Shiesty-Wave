@@ -54,6 +54,12 @@ dependencies {
     implementation(Libraries.composeTooling)
     implementation(Libraries.lifecycleRuntimeKtx)
     implementation(Libraries.composeActivity)
+    implementation(Libraries.composeNavigation)
+
+    // DI - KOIN
+    implementation(Libraries.koin)
+    implementation(Libraries.koinViewModel)
+
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)
     androidTestImplementation(TestLibraries.espressoCore)

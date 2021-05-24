@@ -14,6 +14,11 @@ object Versions {
 
     const val kotlin = "1.4.32"
     const val androidToolsGradle = "7.0.0-beta02"
+
+    const val composeNavigation = "2.4.0-alpha0"
+
+    // DI - KOIN
+    const val koin = "3.0.2"
 }
 
 object BuildPlugins {
@@ -56,6 +61,13 @@ object Libraries {
 
     const val lifecycleRuntimeKtx =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
+
+    const val composeNavigation =
+        "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
+
+    // DI - KOIN
+    const val koin = "org.koin:koin-android:${Versions.koin}"
+    const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 }
 
 object TestLibraries {

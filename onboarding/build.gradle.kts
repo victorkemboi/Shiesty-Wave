@@ -7,11 +7,11 @@ android {
     buildToolsVersion = AndroidSdk.buildToolsVersion
 
     defaultConfig {
-        applicationId = "com.mes.shiestywave.onboarding"
+//        applicationId = "com.mes.shiestywave.onboarding"
         minSdk = AndroidSdk.minSdkVersion
-        targetSdk = AndroidSdk.targetSdkVersion
-        versionCode = AndroidSdk.versionCode
-        versionName = AndroidSdk.versionName
+//        targetSdk = AndroidSdk.targetSdkVersion
+//        versionCode = AndroidSdk.versionCode
+//        versionName = AndroidSdk.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
