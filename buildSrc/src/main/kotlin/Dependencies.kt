@@ -15,10 +15,12 @@ object Versions {
     const val kotlin = "1.4.32"
     const val androidToolsGradle = "7.0.0-beta02"
 
-    const val composeNavigation = "2.4.0-alpha0"
+    const val composeNavigation = "2.4.0-alpha01"
 
     // DI - KOIN
     const val koin = "3.0.2"
+    const val koinCompose = "3.0.1"
+    const val accompanist = "0.10.0"
 }
 
 object BuildPlugins {
@@ -66,8 +68,12 @@ object Libraries {
         "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
 
     // DI - KOIN
-    const val koin = "org.koin:koin-android:${Versions.koin}"
-    const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
+    const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koinCompose}"
+
+    const val accompanist = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
+    const val accompanistSystemUiController =
+        "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
 }
 
 object TestLibraries {

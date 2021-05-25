@@ -58,7 +58,10 @@ dependencies {
 
     // DI - KOIN
     implementation(Libraries.koin)
-    implementation(Libraries.koinViewModel)
+    implementation(Libraries.koinCompose)
+
+    implementation(Libraries.accompanist)
+    implementation(Libraries.accompanistSystemUiController)
 
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)

@@ -25,12 +25,34 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
 }
 
 dependencies {
-    implementation(project(BuildModules.appModule))
+    api(project(BuildModules.appModule))
     implementation(Libraries.coreKtx)
 
+    implementation(Libraries.material)
+
+    implementation(Libraries.composeUi)
+    implementation(Libraries.composeTooling)
+    implementation(Libraries.composeMaterial)
+    implementation(Libraries.composeNavigation)
+
+    implementation(Libraries.koin)
+    implementation(Libraries.koinCompose)
     // Test libraries
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)
