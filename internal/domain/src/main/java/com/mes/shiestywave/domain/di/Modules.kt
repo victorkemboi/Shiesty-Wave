@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 private val useCaseModule: Module = module {
     single { SongUseCase(get(), get(), get()) }
-    single { ArtistUseCase(get(), get()) }
+    single { ArtistUseCase(get(), get(), get()) }
 }
 
 val domainModules: List<Module> = listOf(

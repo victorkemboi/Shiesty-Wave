@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
@@ -26,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -45,7 +43,7 @@ import java.util.* // ktlint-disable no-wildcard-imports
 @InternalCoroutinesApi
 @ExperimentalComposeApi
 @Composable
-fun ArtistScreen(homeViewModel: HomeViewModel) {
+fun ArtistScreen(homeViewModel: HomeViewModel, navController: NavHostController) {
     Column {
         Row {
             Icon(
@@ -73,6 +71,61 @@ fun ArtistScreen(homeViewModel: HomeViewModel) {
 
         Divider(color = Color.LightGray, thickness = 1.dp)
         Artists(artists = homeViewModel.getArtists())
+    }
+
+    Row {
+        FloatingActionButton(
+            onClick = {
+                navController.navigate("songs") {
+                    launchSingleTop = true
+                }
+            },
+            modifier = Modifier.background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Black,
+                        Color.Black
+                    )
+                )
+            ).padding(12.dp)
+        ) {
+            Icon(
+                painter = painterResource(R.drawable.ic_music_library),
+                contentDescription = "Songs",
+                tint = Pink700,
+                modifier = Modifier
+                    .alignByBaseline()
+                    .padding(8.dp)
+                    .padding(
+                        start = 12.dp
+                    )
+            )
+        }
+
+        FloatingActionButton(
+            onClick = {
+            },
+            modifier = Modifier.background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Black,
+                        Color.Black
+                    )
+                )
+            ).padding(12.dp)
+        ) {
+            Icon(
+                painter = painterResource(R.drawable.ic_account_box),
+                contentDescription = "artists",
+                tint = Teal700,
+                modifier = Modifier
+                    .alignByBaseline()
+                    .padding(8.dp)
+                    .padding(
+                        start = 12.dp
+                    )
+            )
+        }
     }
 }
 

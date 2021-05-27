@@ -25,8 +25,13 @@ fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
                 systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = false)
             }
             NavHost(navController = navController, startDestination = "songs") {
-                composable("songs") { SongScreen(homeViewModel = homeViewModel) }
-                composable("artists") { ArtistScreen(homeViewModel) }
+                composable("songs") {
+                    SongScreen(
+                    homeViewModel = homeViewModel, navController = navController)
+                }
+                composable("artists") {
+                    ArtistScreen(homeViewModel, navController = navController)
+                }
             }
         }
     }
