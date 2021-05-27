@@ -22,6 +22,10 @@ data class Artist(
     val id: String = generateLocalID()
 )
 
+val unknownArtist = Artist(
+    name = "Unknown Artist",
+)
+
 @Entity(indices = [Index(value = ["id"], unique = true)])
 data class FeaturedArtist(
     var song: String,

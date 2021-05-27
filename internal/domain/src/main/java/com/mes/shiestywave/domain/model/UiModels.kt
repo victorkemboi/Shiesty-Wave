@@ -1,15 +1,14 @@
 package com.mes.shiestywave.domain.model
 
 import com.mes.shiestywave.data.data.local.entity.Artist
-import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
 import com.mes.shiestywave.data.data.local.entity.Song
 
 sealed class SongUiModel {
 
     class SongModel(
         val song: Song,
-        val artist: Artist,
-        val featuredArtist: List<FeaturedArtist>
+        val artist: Artist?,
+        val featuredArtist: List<Artist>
     ) : SongUiModel()
 
     class SongSeparatorModel(val description: String) : SongUiModel()

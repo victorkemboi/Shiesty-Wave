@@ -1,5 +1,6 @@
 package com.mes.shiestywave.data.data.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import app.rejareja.data.data.local.base.BaseDao
@@ -12,19 +13,28 @@ import kotlinx.coroutines.flow.Flow
 interface ArtistDao : BaseDao<Artist> {
 
     @Query("SELECT * FROM Artist WHERE id =:id LIMIT 1")
-    fun fetchArtistById(id: String): Flow<Artist>
+    suspend fun fetchArtistById(id: String): Artist?
 }
 
 @Dao
 interface SongDao : BaseDao<Song> {
 
     @Query("SELECT * FROM Song WHERE id =:id LIMIT 1")
-    fun fetchSongById(id: String): Flow<Song>
+    suspend fun fetchSongById(id: String): Song?
+
+    @Query("SELECT * FROM Song")
+    fun fetchAllSongs(): PagingSource<Int, Song>
+
+    @Query("SELECT * FROM Song WHERE id=:artist")
+    fun fetchArtistSongs(artist: String): PagingSource<Int, Song>
 }
 
 @Dao
 interface FeaturedArtistDao : BaseDao<FeaturedArtist> {
 
     @Query("SELECT * FROM FeaturedArtist WHERE id =:id LIMIT 1")
-    fun fetchFeaturedArtistById(id: String): Flow<FeaturedArtist>
+    suspend fun fetchFeaturedArtistById(id: String): FeaturedArtist?
+
+    @Query("SELECT * FROM FeaturedArtist WHERE song=:song")
+    fun fetchFeaturedArtists(song: String): Flow<List<FeaturedArtist>>
 }
