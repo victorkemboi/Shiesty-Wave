@@ -48,6 +48,7 @@ android {
 dependencies {
 
     api(project(BuildModules.dataModule))
+    api(project(BuildModules.domainModule))
 
     implementation(Libraries.coreKtx)
     implementation(Libraries.appCompat)

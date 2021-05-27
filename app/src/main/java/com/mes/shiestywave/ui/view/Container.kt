@@ -19,10 +19,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mes.shiestywave.ShiestyWaveApp
+import com.mes.shiestywave.data.data.local.entity.Song
 import com.mes.shiestywave.ui.theme.Red500
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.theme.Teal200
-import com.mes.shiestywave.utils.generateLocalID
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +111,11 @@ fun LoginScreen() {
             )
         }
     }
+}
+
+@Composable
+fun Song(song: Song, featuredArtists: List<>) {
+
 }
 
 

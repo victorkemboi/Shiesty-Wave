@@ -1,0 +1,35 @@
+package com.mes.shiestywave.domain.model
+
+import com.mes.shiestywave.data.data.local.entity.Artist
+import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
+import com.mes.shiestywave.data.data.local.entity.Song
+
+sealed class SongUiModel {
+
+    class SongModel(
+        val song: Song,
+        val artist: Artist,
+        val featuredArtist: List<FeaturedArtist>
+    ) : SongUiModel()
+
+    class SongSeparatorModel(val description: String) : SongUiModel()
+}
+
+sealed class ArtistUiModel {
+
+    class ArtistModel(
+        val artist: Artist,
+    ) : ArtistUiModel()
+
+    class ArtistSeparatorModel(val description: String) : ArtistUiModel()
+}
+
+sealed class ArtistSongsUiModel {
+
+    class ArtistSongsModel(
+        val artist: Artist,
+        val songs: List<SongUiModel.SongModel>
+    ) : ArtistSongsUiModel()
+
+    class FeaturedArtistSeparatorModel(val description: String) : ArtistSongsUiModel()
+}
