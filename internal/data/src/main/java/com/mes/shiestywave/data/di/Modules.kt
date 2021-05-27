@@ -30,7 +30,7 @@ private val daoModule: Module = module {
 private val repositoryModule: Module = module {
     single<ArtistRepository> { ArtistRepositoryImpl(get(), get()) }
     single<FeaturedArtistRepository> { FeaturedArtistRepositoryImpl(get()) }
-    single<SongRepository> { SongRepositoryImpl(get()) }
+    single<SongRepository> { SongRepositoryImpl(get(), get()) }
 }
 
 val dataModules: List<Module> = listOf(

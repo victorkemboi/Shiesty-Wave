@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+        freeCompilerArgs = listOf(
+            "-Xallow-unstable-dependencies"
+        )
     }
     buildFeatures {
         compose = true
@@ -69,6 +72,7 @@ dependencies {
     implementation(Libraries.accompanistSystemUiController)
 
     implementation(Libraries.timber)
+    implementation(Libraries.joda)
 
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)

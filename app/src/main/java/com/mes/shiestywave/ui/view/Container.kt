@@ -24,17 +24,18 @@ import androidx.paging.compose.itemsIndexed
 import com.mes.shiestywave.ShiestyWaveApp
 import com.mes.shiestywave.domain.model.SongUiModel
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
-import com.mes.shiestywave.ui.viewmodel.SongViewModel
+import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 import com.mes.shiestywave.utils.getCharacterBackground
 import kotlinx.coroutines.flow.Flow
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.* // ktlint-disable no-wildcard-imports
 
 class MainActivity : ComponentActivity() {
+    private val homeViewModel: HomeViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ShiestyWaveApp()
+            ShiestyWaveApp(homeViewModel)
         }
     }
 }
@@ -53,10 +54,8 @@ fun DefaultPreview() {
 }
 
 @Composable
-@Preview
-fun HomeScreen() {
-    val songViewModel: SongViewModel = getViewModel()
-    Songs(songs = songViewModel.getSongs())
+fun HomeScreen(homeViewModel: HomeViewModel) {
+    Songs(songs = homeViewModel.getSongs())
 }
 
 @Composable

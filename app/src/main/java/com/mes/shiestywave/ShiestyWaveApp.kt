@@ -12,9 +12,10 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.view.HomeScreen
+import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 
 @Composable
-fun ShiestyWaveApp() {
+fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
     ShiestyWaveTheme {
         ProvideWindowInsets {
             val systemUiController = rememberSystemUiController()
@@ -48,7 +49,7 @@ fun ShiestyWaveApp() {
 //                    scaffoldState = scaffoldState
 //                )
 //            }
-            HomeScreen()
+            HomeScreen(homeViewModel)
         }
     }
 }

@@ -18,7 +18,7 @@ object Versions {
     const val composeNavigation = "2.4.0-alpha01"
 
     // DI - KOIN
-    const val koin = "3.0.2"
+    const val koin = "3.0.1"
     const val koinCompose = "3.0.1"
     const val accompanist = "0.10.0"
 
@@ -30,6 +30,7 @@ object Versions {
     const val joda = "2.10.10"
 
     const val pagingCompose = "1.0.0-alpha09"
+    const val lifecycleViewModelCompose = "1.0.0-alpha05"
 
     const val timber = "4.7.1"
 }
@@ -97,6 +98,9 @@ object Libraries {
 
     // paging compose
     const val pagingCompose = "androidx.paging:paging-compose:${Versions.pagingCompose}"
+
+    const val lifecycleViewModelCompose =
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleViewModelCompose}"
 
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }

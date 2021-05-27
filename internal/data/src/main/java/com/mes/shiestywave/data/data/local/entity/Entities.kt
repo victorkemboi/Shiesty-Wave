@@ -9,7 +9,7 @@ import org.joda.time.DateTime
 @Entity(indices = [Index(value = ["id"], unique = true)])
 data class Song(
     val name: String,
-    val artist: String,
+    val artistId: String,
     val releaseDate: DateTime,
     @PrimaryKey
     val id: String = generateLocalID()
@@ -28,8 +28,8 @@ val unknownArtist = Artist(
 
 @Entity(indices = [Index(value = ["id"], unique = true)])
 data class FeaturedArtist(
-    var song: String,
-    var artist: String,
+    var songId: String,
+    var artistId: String,
     @PrimaryKey
     val id: String = generateLocalID()
 )

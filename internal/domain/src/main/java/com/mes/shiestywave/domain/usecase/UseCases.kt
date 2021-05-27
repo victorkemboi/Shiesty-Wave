@@ -1,6 +1,9 @@
 package com.mes.shiestywave.domain.usecase
 
 import androidx.paging.map
+import com.mes.shiestywave.data.data.local.entity.Artist
+import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
+import com.mes.shiestywave.data.data.local.entity.Song
 import com.mes.shiestywave.data.data.local.entity.unknownArtist
 import com.mes.shiestywave.data.repository.ArtistRepository
 import com.mes.shiestywave.data.repository.FeaturedArtistRepository
@@ -22,17 +25,21 @@ class SongUseCase(
             song ->
             SongUiModel.SongModel(
                 song = song,
-                artist = artistRepository.getArtist(song.artist),
+                artist = artistRepository.getArtist(song.artistId),
                 featuredArtists = featuredArtistRepository.getFeaturedArtists(song.id).first().map {
-                    artistRepository.getArtist(song.artist) ?: unknownArtist
+                    artistRepository.getArtist(song.artistId) ?: unknownArtist
                 }
             )
         }
     }
+
+    fun save(songs: List<Song>) = songRepository.save(songs)
+    suspend fun nukeDb() = songRepository.nukeDb()
 }
 
 class ArtistUseCase(
-    private val artistRepository: ArtistRepository
+    private val artistRepository: ArtistRepository,
+    private val featuredArtistRepository: FeaturedArtistRepository
 ) {
     fun artistSongs(artist: String) = artistRepository.fetchArtistSongs(artist = artist)
     fun allArtists() = artistRepository.fetchAllArtists().map {
@@ -43,4 +50,8 @@ class ArtistUseCase(
         }
     }
     suspend fun get(id: String) = artistRepository.getArtist(artist = id)
+
+    fun save(artists: List<Artist>) = artistRepository.save(artists)
+    fun saveFeaturedArtists(featuredArtists: List<FeaturedArtist>) =
+        featuredArtistRepository.save(featuredArtists)
 }

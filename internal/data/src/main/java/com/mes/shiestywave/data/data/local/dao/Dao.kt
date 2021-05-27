@@ -38,6 +38,6 @@ interface FeaturedArtistDao : BaseDao<FeaturedArtist> {
     @Query("SELECT * FROM FeaturedArtist WHERE id =:id LIMIT 1")
     suspend fun fetchFeaturedArtistById(id: String): FeaturedArtist?
 
-    @Query("SELECT * FROM FeaturedArtist WHERE song=:song")
+    @Query("SELECT * FROM FeaturedArtist WHERE songId=:song")
     fun fetchFeaturedArtists(song: String): Flow<List<FeaturedArtist>>
 }

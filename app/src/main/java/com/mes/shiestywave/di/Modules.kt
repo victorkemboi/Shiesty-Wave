@@ -1,6 +1,7 @@
 package com.mes.shiestywave.di
 
 import com.mes.shiestywave.ui.viewmodel.ArtistViewModel
+import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 import com.mes.shiestywave.ui.viewmodel.SongViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +14,7 @@ import org.koin.dsl.module
 private val viewModelModule: Module = module {
     viewModel { SongViewModel(get()) }
     viewModel { ArtistViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }
 
 private val utilModule: Module = module {
