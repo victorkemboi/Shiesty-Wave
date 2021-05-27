@@ -1,10 +1,7 @@
 package com.mes.shiestywave
 
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.* // ktlint-disable no-wildcard-imports
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -14,6 +11,7 @@ import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.view.HomeScreen
 import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 
+@ExperimentalComposeApi
 @Composable
 fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
     ShiestyWaveTheme {

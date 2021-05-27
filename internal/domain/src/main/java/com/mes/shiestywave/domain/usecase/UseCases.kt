@@ -27,7 +27,7 @@ class SongUseCase(
                 song = song,
                 artist = artistRepository.getArtist(song.artistId),
                 featuredArtists = featuredArtistRepository.getFeaturedArtists(song.id).first().map {
-                    artistRepository.getArtist(song.artistId) ?: unknownArtist
+                    artistRepository.getArtist(it.artistId) ?: unknownArtist
                 }
             )
         }

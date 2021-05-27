@@ -56,6 +56,7 @@ dependencies {
     implementation(Libraries.coreKtx)
     implementation(Libraries.appCompat)
     implementation(Libraries.material)
+    implementation(Libraries.materialIcons)
     implementation(Libraries.composeUi)
     implementation(Libraries.composeMaterial)
     implementation(Libraries.composeTooling)

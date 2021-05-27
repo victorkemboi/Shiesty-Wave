@@ -11,8 +11,16 @@ sealed class SongUiModel {
         val artist: Artist?,
         val featuredArtists: List<Artist>
     ) : SongUiModel() {
-        val title = "${artist?.name ?: unknownArtist.name} - ${song.name} ft " +
-            featuredArtists.joinToString(separator = ", ").removeSuffix(", ")
+        val title = "${artist?.name ?: unknownArtist.name} - ${song.name}".apply {
+            if (featuredArtists.isNotEmpty()) {
+                this.plus(
+                    " ft ${
+                    featuredArtists.joinToString(separator = ", ") {
+                        it.name
+                    }.removeSuffix(", ")}"
+                )
+            }
+        }
     }
 
     class SongSeparatorModel(val description: String) : SongUiModel()

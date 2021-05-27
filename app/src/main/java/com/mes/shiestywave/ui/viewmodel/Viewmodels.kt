@@ -32,90 +32,88 @@ class HomeViewModel(
 ) : ViewModel() {
 
     init {
+        val featuredArtists = mutableListOf<FeaturedArtist>()
+        val artists = mutableListOf<Artist>()
+        val songs = mutableListOf<Song>()
         viewModelScope.safeLaunchWithIo {
             songUseCase.nukeDb()
-            val featuredArtists = mutableListOf<FeaturedArtist>()
-            val artists = mutableListOf<Artist>().apply {
-                addAll(
-                    listOf(
-                        Artist("Drake"),
-                        Artist("Travis Scott"),
-                        Artist("A\$ap Rocky"),
-                        Artist("The Midnight"),
-                        Artist("Gucci Mane"),
-                        Artist("Pooh Shiesty"),
-                        Artist("Big 30"),
-                        Artist("Lil Durk"),
-                        Artist("Lil Baby"),
-                        Artist("Migos"),
-                    )
+
+            artists.addAll(
+                listOf (
+                    Artist("Drake"),
+                    Artist("Travis Scott"),
+                    Artist("A\$ap Rocky"),
+                    Artist("The Midnight"),
+                    Artist("Gucci Mane"),
+                    Artist("Pooh Shiesty"),
+                    Artist("Big 30"),
+                    Artist("Lil Durk"),
+                    Artist("Lil Baby"),
+                    Artist("Migos"),
                 )
-            }
-            val songs = mutableListOf<Song>().apply {
-                addAll(
-                    listOf(
-                        Song("SICKO MODE", artists[1].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[0].id),
-                                )
+            )
+            songs. addAll(
+                listOf(
+                    Song("SICKO MODE", artists[1].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[0].id),
                             )
-                        },
-                        Song("I'm Upset!", artists[0].name, DateTime.now()),
-                        Song("Fashion Killa", artists[2].name, DateTime.now()),
-                        Song("Gloria", artists[3].name, DateTime.now()),
-                        Song("Shit Crazy", artists[4].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[6].id),
-                                )
+                        )
+                    },
+                    Song("I'm Upset!", artists[0].id, DateTime.now()),
+                    Song("Fashion Killa", artists[2].id, DateTime.now()),
+                    Song("Gloria", artists[3].id, DateTime.now()),
+                    Song("Shit Crazy", artists[4].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[6].id),
                             )
-                        },
-                        Song("Back In Blood", artists[5].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[7].id),
-                                )
+                        )
+                    },
+                    Song("Back In Blood", artists[5].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[7].id),
                             )
-                        },
-                        Song("Allegations", artists[6].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[5].id),
-                                )
+                        )
+                    },
+                    Song("Allegations", artists[6].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[5].id),
                             )
-                        },
-                        Song("Finesse Out The Gang Way", artists[7].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[8].id),
-                                )
+                        )
+                    },
+                    Song("Finesse Out The Gang Way", artists[7].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[8].id),
                             )
-                        },
-                        Song("Yes Indeed", artists[8].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[0].id),
-                                )
+                        )
+                    },
+                    Song("Yes Indeed", artists[8].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[0].id),
                             )
-                        },
-                        Song("Walk It Like I Talk It", artists[9].name, DateTime.now()).apply {
-                            featuredArtists.addAll(
-                                listOf(
-                                    FeaturedArtist(this.id, artists[0].id),
-                                )
+                        )
+                    },
+                    Song("Walk It Like I Talk It", artists[9].id, DateTime.now()).also {
+                        featuredArtists.addAll(
+                            listOf(
+                                FeaturedArtist(it.id, artists[0].id),
                             )
-                        },
-                    )
+                        )
+                    },
                 )
-            }
+            )
 
             songUseCase.save(songs).first()
             artistUseCase.save(artists).first()
             artistUseCase.saveFeaturedArtists(featuredArtists).first()
         }
     }
-
 
     fun getArtists() = artistUseCase.allArtists()
     suspend fun getArtist(id: String) = artistUseCase.get(id)

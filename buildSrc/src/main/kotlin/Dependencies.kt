@@ -73,6 +73,8 @@ object Libraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
 
     const val material = "com.google.android.material:material:${Versions.material}"
+    const val materialIcons =
+        "androidx.compose.material:material-icons-extended:${Versions.compose}"
 
     const val lifecycleRuntimeKtx =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
