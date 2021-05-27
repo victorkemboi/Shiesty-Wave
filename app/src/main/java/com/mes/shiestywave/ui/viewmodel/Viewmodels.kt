@@ -277,6 +277,7 @@ class HomeViewModel(
             songUseCase.save(songs).first()
             artistUseCase.save(artists).first()
             artistUseCase.saveFeaturedArtists(featuredArtists).first()
+            artistUseCase.saveArtistCovers(artistCovers).first()
         }
     }
 

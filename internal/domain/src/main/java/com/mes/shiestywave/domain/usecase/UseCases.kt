@@ -1,10 +1,7 @@
 package com.mes.shiestywave.domain.usecase
 
 import androidx.paging.map
-import com.mes.shiestywave.data.data.local.entity.Artist
-import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
-import com.mes.shiestywave.data.data.local.entity.Song
-import com.mes.shiestywave.data.data.local.entity.unknownArtist
+import com.mes.shiestywave.data.data.local.entity.*
 import com.mes.shiestywave.data.repository.ArtistCoverRepository
 import com.mes.shiestywave.data.repository.ArtistRepository
 import com.mes.shiestywave.data.repository.FeaturedArtistRepository
@@ -93,4 +90,7 @@ class ArtistUseCase(
     fun save(artists: List<Artist>) = artistRepository.save(artists)
     fun saveFeaturedArtists(featuredArtists: List<FeaturedArtist>) =
         featuredArtistRepository.save(featuredArtists)
+
+    fun saveArtistCovers(artistCovers: List<ArtistCover>) =
+        artistCoverRepository.save(artistCovers)
 }

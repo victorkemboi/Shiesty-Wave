@@ -69,6 +69,9 @@ dependencies {
     implementation(Libraries.koin)
     implementation(Libraries.koinCompose)
 
+
+    implementation(Libraries.ConstraintLayoutCompose)
+
     implementation(Libraries.accompanist)
     implementation(Libraries.swipeRefresh)
     implementation(Libraries.accompanistSystemUiController)

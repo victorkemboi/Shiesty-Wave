@@ -3,15 +3,14 @@ package com.mes.shiestywave.ui.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -23,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -44,87 +44,85 @@ import java.util.* // ktlint-disable no-wildcard-imports
 @ExperimentalComposeApi
 @Composable
 fun ArtistScreen(homeViewModel: HomeViewModel, navController: NavHostController) {
-    Column {
-        Row {
-            Icon(
-                painter = painterResource(R.drawable.ic_account_box),
-                contentDescription = "print",
-                tint = Group2,
-                modifier = Modifier
-                    .alignByBaseline()
-                    .padding(8.dp)
-                    .padding(
-                        start = 12.dp
-                    )
-            )
-            Text(
-                color = Teal700,
-                style = TextStyle(textAlign = TextAlign.Start),
-                modifier = Modifier
-                    .padding(8.dp)
-                    .alignByBaseline(),
-                fontWeight = FontWeight.Medium,
-                text = "Artists",
-                fontSize = 20.sp
-            )
+    ConstraintLayout {
+        val (viewPort, fabLayout) = createRefs()
+
+        Column(
+            modifier = Modifier.constrainAs(viewPort) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+            }
+        ) {
+            Row {
+                Icon(
+                    painter = painterResource(R.drawable.ic_account_box),
+                    contentDescription = "print",
+                    tint = Group2,
+                    modifier = Modifier
+                        .alignByBaseline()
+                        .padding(8.dp)
+                        .padding(
+                            start = 12.dp
+                        )
+                )
+                Text(
+                    color = Teal700,
+                    style = TextStyle(textAlign = TextAlign.Start),
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .alignByBaseline(),
+                    fontWeight = FontWeight.Medium,
+                    text = "Artists",
+                    fontSize = 20.sp
+                )
+            }
+
+            Divider(color = Color.LightGray, thickness = 1.dp)
+            Artists(artists = homeViewModel.getArtists())
         }
 
-        Divider(color = Color.LightGray, thickness = 1.dp)
-        Artists(artists = homeViewModel.getArtists())
-    }
-
-    Row {
-        FloatingActionButton(
-            onClick = {
-                navController.navigate("songs") {
-                    launchSingleTop = true
+        Row(
+            modifier = Modifier
+                .background(Color.Transparent)
+                .fillMaxWidth(fraction = 1F)
+                .constrainAs(fabLayout) {
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
                 }
-            },
-            modifier = Modifier.background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.Black,
-                        Color.Black
-                    )
-                )
-            ).padding(12.dp)
         ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_music_library),
-                contentDescription = "Songs",
-                tint = Pink700,
-                modifier = Modifier
-                    .alignByBaseline()
-                    .padding(8.dp)
-                    .padding(
-                        start = 12.dp
-                    )
-            )
-        }
-
-        FloatingActionButton(
-            onClick = {
-            },
-            modifier = Modifier.background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.Black,
-                        Color.Black
-                    )
+            Surface(
+                modifier = Modifier.size(50.dp).padding(12.dp).clickable {
+                    navController.navigate("songs") {
+                        launchSingleTop = true
+                    }
+                },
+                shape = CircleShape,
+                color = Color.Black // MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_music_library),
+                    contentDescription = "Songs",
+                    tint = Color.LightGray,
+                    modifier = Modifier
+                        .alignByBaseline()
+                        .padding(8.dp).align(alignment = Alignment.CenterVertically)
                 )
-            ).padding(12.dp)
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_account_box),
-                contentDescription = "artists",
-                tint = Teal700,
-                modifier = Modifier
-                    .alignByBaseline()
-                    .padding(8.dp)
-                    .padding(
-                        start = 12.dp
-                    )
-            )
+            }
+            Surface(
+                modifier = Modifier.size(50.dp).padding(12.dp),
+                shape = CircleShape,
+                color = Color.Black
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_account_box),
+                    contentDescription = "artists",
+                    tint = Teal700,
+                    modifier = Modifier
+                        .alignByBaseline()
+                        .padding(8.dp)
+                )
+            }
         }
     }
 }

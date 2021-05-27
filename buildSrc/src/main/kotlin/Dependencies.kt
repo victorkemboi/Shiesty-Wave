@@ -31,6 +31,7 @@ object Versions {
 
     const val pagingCompose = "1.0.0-alpha09"
     const val lifecycleViewModelCompose = "1.0.0-alpha05"
+    const val ConstraintLayoutCompose = "1.0.0-alpha07"
 
     const val timber = "4.7.1"
     const val glideCompose = "0.10.0"
@@ -106,6 +107,8 @@ object Libraries {
 
     // paging compose
     const val pagingCompose = "androidx.paging:paging-compose:${Versions.pagingCompose}"
+    const val ConstraintLayoutCompose =
+        "androidx.constraintlayout:constraintlayout-compose:${Versions.ConstraintLayoutCompose}"
 
     const val lifecycleViewModelCompose =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleViewModelCompose}"
