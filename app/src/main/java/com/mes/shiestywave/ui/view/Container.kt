@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -30,6 +33,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import com.google.accompanist.glide.rememberGlidePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.mes.shiestywave.R
@@ -75,14 +79,19 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
                 painter = painterResource(R.drawable.ic_music_library),
                 contentDescription = "print",
                 tint = Color.DarkGray,
-                modifier = Modifier.alignByBaseline().padding(8.dp).padding(
-                    start = 12.dp
-                )
+                modifier = Modifier
+                    .alignByBaseline()
+                    .padding(8.dp)
+                    .padding(
+                        start = 12.dp
+                    )
             )
             Text(
                 color = Color.DarkGray,
                 style = TextStyle(textAlign = TextAlign.Start),
-                modifier = Modifier.padding(8.dp).alignByBaseline(),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .alignByBaseline(),
                 fontWeight = FontWeight.Medium,
                 text = "Top heat songs",
                 fontSize = 20.sp
@@ -116,43 +125,50 @@ fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
 @Composable
 fun Song(song: SongUiModel.SongModel, index: Int) {
     val context = LocalContext.current
-    Row(
-        modifier = Modifier.padding(
-            16.dp
+    Card(
+        backgroundColor = getCharacterBackground(
+            song.song.name.first().toString().capitalize(Locale.ROOT)
         ),
+        shape = RoundedCornerShape(8.dp),
+        elevation = 8.dp,
+        modifier = Modifier
+            .clickable(
+                onClick = {
+                    Toast
+                        .makeText(
+                            context,
+                            "I am a song!",
+                            Toast.LENGTH_SHORT
+                        )
+                        .show()
+                }
+            ).fillMaxWidth().padding(16.dp)
     ) {
-        Text(
-            color = Color.DarkGray,
-            style = TextStyle(textAlign = TextAlign.Start),
-            modifier = Modifier.padding(12.dp),
-            text = "$index ."
-        )
-        Card(
-            backgroundColor = getCharacterBackground(
-                song.song.name.first().toString().capitalize(Locale.ROOT)
-            ),
-            shape = RoundedCornerShape(3.dp),
-            elevation = 8.dp,
-            modifier = Modifier
-                .clickable(
-                    onClick = {
-                        Toast
-                            .makeText(
-                                context,
-                                "I am a song!",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
-                    }
-                )
+        Column(
+            modifier = Modifier.fillMaxWidth()
         ) {
-
-            Text(
-                color = Color.White,
-                style = TextStyle(textAlign = TextAlign.Center),
-                modifier = Modifier.padding(12.dp),
-                text = song.title
+            Image(
+                painter = rememberGlidePainter(
+                    request = song.song.coverArt
+                ),
+                contentDescription = song.song.name,
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.FillWidth
             )
+            Row {
+                Text(
+                    color = Color.White,
+                    style = TextStyle(textAlign = TextAlign.Start),
+                    modifier = Modifier.padding(12.dp),
+                    text = "$index ."
+                )
+                Text(
+                    color = Color.White,
+                    style = TextStyle(textAlign = TextAlign.Center),
+                    modifier = Modifier.padding(12.dp),
+                    text = song.title
+                )
+            }
         }
     }
 }

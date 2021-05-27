@@ -33,6 +33,7 @@ object Versions {
     const val lifecycleViewModelCompose = "1.0.0-alpha05"
 
     const val timber = "4.7.1"
+    const val glideCompose = "0.10.0"
 }
 
 object BuildPlugins {
@@ -62,6 +63,8 @@ object GradlePlugin {
 }
 
 object Libraries {
+    const val glide = "com.google.accompanist:accompanist-glide:${Versions.glideCompose}"
+
     // compose UI
     const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
     const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"

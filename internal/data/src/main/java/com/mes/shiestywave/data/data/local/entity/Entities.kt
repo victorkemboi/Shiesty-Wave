@@ -10,6 +10,8 @@ import org.joda.time.DateTime
 data class Song(
     val name: String,
     val artistId: String,
+    val coverArt: String,
+    val youtubeUri: String,
     val releaseDate: DateTime,
     @PrimaryKey
     val id: String = generateLocalID()

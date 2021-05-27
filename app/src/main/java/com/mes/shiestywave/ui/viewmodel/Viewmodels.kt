@@ -39,7 +39,7 @@ class HomeViewModel(
             songUseCase.nukeDb()
 
             artists.addAll(
-                listOf (
+                listOf(
                     Artist("Drake"),
                     Artist("Travis Scott"),
                     Artist("A\$ap Rocky"),
@@ -52,54 +52,86 @@ class HomeViewModel(
                     Artist("Migos"),
                 )
             )
-            songs. addAll(
+            songs.addAll(
                 listOf(
-                    Song("SICKO MODE", artists[1].id, DateTime.now()).also {
+                    Song(
+                        "SICKO MODE", artists[1].id,
+                        "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk",
+                        DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[0].id),
                             )
                         )
                     },
-                    Song("I'm Upset!", artists[0].id, DateTime.now()),
-                    Song("Fashion Killa", artists[2].id, DateTime.now()),
-                    Song("Gloria", artists[3].id, DateTime.now()),
-                    Song("Shit Crazy", artists[4].id, DateTime.now()).also {
+                    Song(
+                        "I'm Upset!", artists[0].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ),
+                    Song(
+                        "Fashion Killa", artists[2].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ),
+                    Song(
+                        "Gloria", artists[3].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ),
+                    Song(
+                        "Shit Crazy", artists[4].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[6].id),
                             )
                         )
                     },
-                    Song("Back In Blood", artists[5].id, DateTime.now()).also {
+                    Song(
+                        "Back In Blood", artists[5].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[7].id),
                             )
                         )
                     },
-                    Song("Allegations", artists[6].id, DateTime.now()).also {
+                    Song(
+                        "Allegations", artists[6].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[5].id),
                             )
                         )
                     },
-                    Song("Finesse Out The Gang Way", artists[7].id, DateTime.now()).also {
+                    Song(
+                        "Finesse Out The Gang Way", artists[7].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[8].id),
                             )
                         )
                     },
-                    Song("Yes Indeed", artists[8].id, DateTime.now()).also {
+                    Song(
+                        "Yes Indeed", artists[8].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[0].id),
                             )
                         )
                     },
-                    Song("Walk It Like I Talk It", artists[9].id, DateTime.now()).also {
+                    Song(
+                        "Walk It Like I Talk It", artists[9].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
+                    ).also {
                         featuredArtists.addAll(
                             listOf(
                                 FeaturedArtist(it.id, artists[0].id),

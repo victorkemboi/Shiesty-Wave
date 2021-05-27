@@ -26,10 +26,13 @@ class SongUseCase(
             SongUiModel.SongModel(
                 song = song,
                 artist = artistRepository.getArtist(song.artistId),
-                featuredArtists = featuredArtistRepository.getFeaturedArtists(song.id).first().map {
-                    val artist = artistRepository.getArtist(it.artistId) ?: unknownArtist
-                    artist
-                }
+                featuredArtists = featuredArtistRepository.getFeaturedArtists(song.id).map {
+                    featuredArtists ->
+                    featuredArtists.map {
+                        val artist = artistRepository.getArtist(it.artistId) ?: unknownArtist
+                        artist
+                    }
+                }.first()
             )
         }
     }
