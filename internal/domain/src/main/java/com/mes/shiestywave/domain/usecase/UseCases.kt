@@ -5,6 +5,7 @@ import com.mes.shiestywave.data.data.local.entity.Artist
 import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
 import com.mes.shiestywave.data.data.local.entity.Song
 import com.mes.shiestywave.data.data.local.entity.unknownArtist
+import com.mes.shiestywave.data.repository.ArtistCoverRepository
 import com.mes.shiestywave.data.repository.ArtistRepository
 import com.mes.shiestywave.data.repository.FeaturedArtistRepository
 import com.mes.shiestywave.data.repository.SongRepository
@@ -44,7 +45,8 @@ class SongUseCase(
 
 class ArtistUseCase(
     private val artistRepository: ArtistRepository,
-    private val featuredArtistRepository: FeaturedArtistRepository
+    private val featuredArtistRepository: FeaturedArtistRepository,
+    private val artistCoverRepository: ArtistCoverRepository
 ) {
     fun pagedArtistSongs(artist: String) =
         artistRepository.fetchPagedArtistSongs(artist = artist).map {
@@ -78,7 +80,11 @@ class ArtistUseCase(
             artist ->
             ArtistSongsUiModel.ArtistSongsModel(
                 artist = ArtistUiModel.ArtistModel(artist = artist),
-                songs = artistSongs(artist = artist.id).first()
+                songs = artistSongs(artist = artist.id).first(),
+                artCovers = artistCoverRepository.fetchArtistCovers(artist = artist.id).first().map {
+                    artistCover ->
+                    artistCover.uri
+                }
             )
         }
     }

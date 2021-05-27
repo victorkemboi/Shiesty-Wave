@@ -23,14 +23,16 @@ val apiModule: Module = module {
 
 private val daoModule: Module = module {
     single { get<Database>().ArtistDao() }
-    single { get<Database>().FeaturedArtistDao() }
+    single { get<Database>().FeaturedArtistDao()}
     single { get<Database>().SongDao() }
+    single { get<Database>().ArtistCoverDao() }
 }
 
 private val repositoryModule: Module = module {
     single<ArtistRepository> { ArtistRepositoryImpl(get(), get()) }
     single<FeaturedArtistRepository> { FeaturedArtistRepositoryImpl(get()) }
     single<SongRepository> { SongRepositoryImpl(get(), get()) }
+    single<ArtistCoverRepository> { ArtistCoverRepositoryImpl(get()) }
 }
 
 val dataModules: List<Module> = listOf(

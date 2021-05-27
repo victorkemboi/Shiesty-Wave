@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import app.rejareja.data.data.local.base.BaseDao
 import com.mes.shiestywave.data.data.local.entity.Artist
+import com.mes.shiestywave.data.data.local.entity.ArtistCover
 import com.mes.shiestywave.data.data.local.entity.FeaturedArtist
 import com.mes.shiestywave.data.data.local.entity.Song
 import kotlinx.coroutines.flow.Flow
@@ -43,4 +44,14 @@ interface FeaturedArtistDao : BaseDao<FeaturedArtist> {
 
     @Query("SELECT * FROM FeaturedArtist WHERE songId=:song")
     fun fetchFeaturedArtists(song: String): Flow<List<FeaturedArtist>>
+}
+
+@Dao
+interface ArtistCoverDao : BaseDao<ArtistCover> {
+
+    @Query("SELECT * FROM ArtistCover WHERE id =:id LIMIT 1")
+    suspend fun fetchFeaturedArtistById(id: String): ArtistCover?
+
+    @Query("SELECT * FROM ArtistCover WHERE artistId=:artist")
+    fun fetchArtistCovers(artist: String): Flow<List<ArtistCover>>
 }

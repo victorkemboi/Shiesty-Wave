@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -32,7 +31,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
@@ -48,7 +46,6 @@ import com.mes.shiestywave.ShiestyWaveApp
 import com.mes.shiestywave.domain.model.SongUiModel
 import com.mes.shiestywave.ui.theme.Pink700
 import com.mes.shiestywave.ui.theme.Pink900
-import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 import com.mes.shiestywave.utils.getCharacterBackground
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -65,19 +62,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             ShiestyWaveApp(homeViewModel)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ShiestyWaveTheme {
-        Greeting("Android")
     }
 }
 

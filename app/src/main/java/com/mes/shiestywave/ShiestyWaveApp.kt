@@ -27,7 +27,6 @@ fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
             NavHost(navController = navController, startDestination = "songs") {
                 composable("songs") { SongScreen(homeViewModel = homeViewModel) }
                 composable("artists") { ArtistScreen(homeViewModel) }
-                /*...*/
             }
         }
     }

@@ -54,7 +54,7 @@ class ArtistRepositoryImpl(
         ).flow
 
     override fun fetchArtistSongs(artist: String): Flow<List<Song>> =
-        songDao.fetchPagedArtistSongs(artist = artist)
+        songDao.fetchArtistSongs(artist = artist)
 
     override suspend fun getArtist(artist: String): Artist? =
         artistDao.fetchArtistById(artist)

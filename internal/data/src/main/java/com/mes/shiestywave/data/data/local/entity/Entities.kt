@@ -24,6 +24,7 @@ data class Artist(
     val id: String = generateLocalID()
 )
 
+@Entity(indices = [Index(value = ["id"], unique = true)])
 data class ArtistCover(
     var uri: String,
     var artistId: String,
