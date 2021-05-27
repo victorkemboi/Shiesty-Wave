@@ -34,6 +34,7 @@ object Versions {
 
     const val timber = "4.7.1"
     const val glideCompose = "0.10.0"
+    const val palette = "28.0.0"
 }
 
 object BuildPlugins {
@@ -63,6 +64,7 @@ object GradlePlugin {
 }
 
 object Libraries {
+    const val palette = "com.android.support:palette-v7:${Versions.palette}"
     const val glide = "com.google.accompanist:accompanist-glide:${Versions.glideCompose}"
 
     // compose UI

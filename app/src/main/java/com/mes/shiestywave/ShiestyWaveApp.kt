@@ -10,7 +10,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.view.HomeScreen
 import com.mes.shiestywave.ui.viewmodel.HomeViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 @ExperimentalComposeApi
 @Composable
 fun ShiestyWaveApp(homeViewModel: HomeViewModel) {

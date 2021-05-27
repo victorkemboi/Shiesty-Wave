@@ -1,10 +1,15 @@
 package com.mes.shiestywave.ui.view
 
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +24,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -39,15 +46,19 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.mes.shiestywave.R
 import com.mes.shiestywave.ShiestyWaveApp
 import com.mes.shiestywave.domain.model.SongUiModel
+import com.mes.shiestywave.ui.theme.Pink700
+import com.mes.shiestywave.ui.theme.Pink900
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
 import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 import com.mes.shiestywave.utils.getCharacterBackground
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.* // ktlint-disable no-wildcard-imports
 
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModel()
+    @InternalCoroutinesApi
     @ExperimentalComposeApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +81,7 @@ fun DefaultPreview() {
     }
 }
 
+@InternalCoroutinesApi
 @ExperimentalComposeApi
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel) {
@@ -78,7 +90,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
             Icon(
                 painter = painterResource(R.drawable.ic_music_library),
                 contentDescription = "print",
-                tint = Color.DarkGray,
+                tint = Pink700,
                 modifier = Modifier
                     .alignByBaseline()
                     .padding(8.dp)
@@ -87,7 +99,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
                     )
             )
             Text(
-                color = Color.DarkGray,
+                color = Pink700,
                 style = TextStyle(textAlign = TextAlign.Start),
                 modifier = Modifier
                     .padding(8.dp)
@@ -103,6 +115,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
     }
 }
 
+@InternalCoroutinesApi
 @Composable
 fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
     val lazySongs = songs.collectAsLazyPagingItems()
@@ -112,7 +125,16 @@ fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
         ),
         onRefresh = { lazySongs.refresh() },
     ) {
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Pink900,
+                        Color.DarkGray
+                    )
+                )
+            )
+        ) {
             itemsIndexed(lazySongs) { index, item ->
                 if (item != null) {
                     Song(song = item, index = index + 1)
@@ -122,6 +144,7 @@ fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
     }
 }
 
+@InternalCoroutinesApi
 @Composable
 fun Song(song: SongUiModel.SongModel, index: Int) {
     val context = LocalContext.current
@@ -134,15 +157,37 @@ fun Song(song: SongUiModel.SongModel, index: Int) {
         modifier = Modifier
             .clickable(
                 onClick = {
-                    Toast
-                        .makeText(
-                            context,
-                            "I am a song!",
-                            Toast.LENGTH_SHORT
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(song.song.youtubeUri)
+                    )
+                    intent.component = ComponentName(
+                        "com.google.android.youtube",
+                        "com.google.android.youtube.PlayerActivity"
+                    )
+
+                    try {
+                        startActivity(context, intent, null)
+                    } catch (ex: ActivityNotFoundException) {
+                        Toast
+                            .makeText(
+                                context,
+                                "Youtube not available!",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+
+                        context.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(song.song.youtubeUri)
+                            )
                         )
-                        .show()
+                    }
                 }
-            ).fillMaxWidth().padding(16.dp)
+            )
+            .fillMaxWidth()
+            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()

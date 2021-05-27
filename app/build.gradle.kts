@@ -76,6 +76,7 @@ dependencies {
     implementation(Libraries.timber)
     implementation(Libraries.joda)
     implementation(Libraries.glide)
+    implementation(Libraries.palette)
 
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)
