@@ -67,19 +67,23 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "I'm Upset!", artists[0].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "I'm Upset!", artists[0].id,
+                        "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fbryanrolli%2Ffiles%2F2018%2F06%2Fdrake_im_upset.jpg",
+                        "https://youtu.be/rIhx2wZ8jnA", DateTime.now()
+                    ),
+                    Song(
+                        "Fashion Killa", artists[2].id,
+                        "https://assets.teenvogue.com/photos/55832201c3f29bdf1f2b631d/16:9/w_2560%2Cc_limit/entertainment-music-2013-09-rihanna-asap-rocky-fashion-killa-main.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ),
                     Song(
-                        "Fashion Killa", artists[2].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Gloria", artists[3].id,
+                        "https://f4.bcbits.com/img/a1146583911_10.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ),
                     Song(
-                        "Gloria", artists[3].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
-                        "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
-                    ),
-                    Song(
-                        "Shit Crazy", artists[4].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Shit Crazy", artists[4].id,
+                        "https://linkstorage.linkfire.com/medialinks/images/6d4a51e9-418c-4551-a760-98ac85cad67f/artwork-440x440.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
@@ -89,7 +93,8 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "Back In Blood", artists[5].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Back In Blood", artists[5].id,
+                        "https://static.hiphopdx.com/2021/02/Screen-Shot-2021-02-05-at-12.30.19-PM-e1612546278629.png",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
@@ -99,7 +104,8 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "Allegations", artists[6].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Allegations", artists[6].id,
+                        "https://images.genius.com/989f620dc5adbb16348fb23f496901c0.1000x999x1.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
@@ -109,7 +115,8 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "Finesse Out The Gang Way", artists[7].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Finesse Out The Gang Way", artists[7].id,
+                        "https://i.ytimg.com/vi/m2x-r1Cyrt0/maxresdefault.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
@@ -119,7 +126,8 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "Yes Indeed", artists[8].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Yes Indeed", artists[8].id,
+                        "https://static.hiphopdx.com/2018/05/Drake-IG-827x620.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
@@ -129,7 +137,8 @@ class HomeViewModel(
                         )
                     },
                     Song(
-                        "Walk It Like I Talk It", artists[9].id, "https://media.pitchfork.com/photos/5b649fcc0b743703a498201f/1:1/w_500/Travis%20Scott%20_%20Astroworld_Cover%20Art.jpg",
+                        "Walk It Like I Talk It", artists[9].id,
+                        "https://thesource.com/wp-content/uploads/2018/03/Walk-It-Talk-It-Video-Migos-Drake.jpg",
                         "https://youtu.be/6ONRf7h3Mdk", DateTime.now()
                     ).also {
                         featuredArtists.addAll(
