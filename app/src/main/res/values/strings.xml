@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Shiesty Wave</string>
+    <string name="title_onboarding">OnBoarding</string>
 </resources>
