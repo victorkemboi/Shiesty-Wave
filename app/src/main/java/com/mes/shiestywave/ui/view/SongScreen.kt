@@ -84,7 +84,7 @@ fun DefaultPreview() {
 @InternalCoroutinesApi
 @ExperimentalComposeApi
 @Composable
-fun HomeScreen(homeViewModel: HomeViewModel) {
+fun SongScreen(homeViewModel: HomeViewModel) {
     Column {
         Row {
             Icon(
@@ -169,14 +169,6 @@ fun Song(song: SongUiModel.SongModel, index: Int) {
                     try {
                         startActivity(context, intent, null)
                     } catch (ex: ActivityNotFoundException) {
-                        Toast
-                            .makeText(
-                                context,
-                                "Youtube not available!",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
-
                         context.startActivity(
                             Intent(
                                 Intent.ACTION_VIEW,

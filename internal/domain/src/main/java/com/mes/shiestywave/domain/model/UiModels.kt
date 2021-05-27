@@ -37,8 +37,9 @@ sealed class ArtistUiModel {
 sealed class ArtistSongsUiModel {
 
     class ArtistSongsModel(
-        val artist: Artist,
-        val songs: List<SongUiModel.SongModel>
+        val artist: ArtistUiModel.ArtistModel,
+        val songs: List<SongUiModel.SongModel>,
+        val artCovers: MutableList<String> = mutableListOf()
     ) : ArtistSongsUiModel()
 
     class FeaturedArtistSeparatorModel(val description: String) : ArtistSongsUiModel()

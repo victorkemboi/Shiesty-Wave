@@ -1,14 +1,15 @@
 package com.mes.shiestywave
 
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.* // ktlint-disable no-wildcard-imports
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
-import com.mes.shiestywave.ui.view.HomeScreen
+import com.mes.shiestywave.ui.view.ArtistScreen
+import com.mes.shiestywave.ui.view.SongScreen
 import com.mes.shiestywave.ui.viewmodel.HomeViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -19,18 +20,27 @@ fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
     ShiestyWaveTheme {
         ProvideWindowInsets {
             val systemUiController = rememberSystemUiController()
+            val navController = rememberNavController()
             SideEffect {
                 systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = false)
             }
+            NavHost(navController = navController, startDestination = "songs") {
+                composable("songs") { SongScreen(homeViewModel = homeViewModel) }
+                composable("artists") { ArtistScreen(homeViewModel) }
+                /*...*/
+            }
+        }
+    }
+}
 
-            val navController = rememberNavController()
-            val coroutineScope = rememberCoroutineScope()
-            // This top level scaffold contains the app drawer, which needs to be accessible
-            // from multiple screens. An event to open the drawer is passed down to each
-            // screen that needs it.
-            val scaffoldState = rememberScaffoldState()
+// val navController = rememberNavController()
+// val coroutineScope = rememberCoroutineScope()
+// This top level scaffold contains the app drawer, which needs to be accessible
+// from multiple screens. An event to open the drawer is passed down to each
+// screen that needs it.
+// val scaffoldState = rememberScaffoldState()
 
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
+// val navBackStackEntry by navController.currentBackStackEntryAsState()
 //            val currentRoute = navBackStackEntry?.destination?.route ?: MainDestinations.HOME_ROUTE
 //            Scaffold(
 //                scaffoldState = scaffoldState,
@@ -49,7 +59,3 @@ fun ShiestyWaveApp(homeViewModel: HomeViewModel) {
 //                    scaffoldState = scaffoldState
 //                )
 //            }
-            HomeScreen(homeViewModel)
-        }
-    }
-}

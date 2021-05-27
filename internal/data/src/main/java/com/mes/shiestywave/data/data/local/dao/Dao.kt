@@ -29,7 +29,10 @@ interface SongDao : BaseDao<Song> {
     fun fetchAllSongs(): PagingSource<Int, Song>
 
     @Query("SELECT * FROM Song WHERE id=:artist")
-    fun fetchArtistSongs(artist: String): PagingSource<Int, Song>
+    fun fetchPagedArtistSongs(artist: String): PagingSource<Int, Song>
+
+    @Query("SELECT * FROM Song WHERE id=:artist")
+    fun fetchArtistSongs(artist: String): Flow<List<Song>>
 }
 
 @Dao

@@ -8,6 +8,7 @@ import com.mes.shiestywave.data.data.local.entity.unknownArtist
 import com.mes.shiestywave.data.repository.ArtistRepository
 import com.mes.shiestywave.data.repository.FeaturedArtistRepository
 import com.mes.shiestywave.data.repository.SongRepository
+import com.mes.shiestywave.domain.model.ArtistSongsUiModel
 import com.mes.shiestywave.domain.model.ArtistUiModel
 import com.mes.shiestywave.domain.model.SongUiModel
 import kotlinx.coroutines.flow.first
@@ -45,12 +46,40 @@ class ArtistUseCase(
     private val artistRepository: ArtistRepository,
     private val featuredArtistRepository: FeaturedArtistRepository
 ) {
-    fun artistSongs(artist: String) = artistRepository.fetchArtistSongs(artist = artist)
+    fun pagedArtistSongs(artist: String) =
+        artistRepository.fetchPagedArtistSongs(artist = artist).map {
+            pagedArtists ->
+            pagedArtists.map {
+            }
+        }
+
+    fun artistSongs(artist: String) = artistRepository.fetchArtistSongs(artist = artist).map {
+        songs ->
+        songs.map {
+            song ->
+            SongUiModel.SongModel(
+                song = song,
+                artist = artistRepository.getArtist(song.artistId),
+                featuredArtists = featuredArtistRepository.getFeaturedArtists(
+                    song = song.artistId
+                ).first().map {
+                    getArtist(it.artistId) ?: unknownArtist
+                }
+            )
+        }
+    }
+
+    suspend fun getArtist(artist: String) =
+        artistRepository.getArtist(artist = artist)
+
     fun allArtists() = artistRepository.fetchAllArtists().map {
         artists ->
         artists.map {
             artist ->
-            ArtistUiModel.ArtistModel(artist = artist)
+            ArtistSongsUiModel.ArtistSongsModel(
+                artist = ArtistUiModel.ArtistModel(artist = artist),
+                songs = artistSongs(artist = artist.id).first()
+            )
         }
     }
     suspend fun get(id: String) = artistRepository.getArtist(artist = id)

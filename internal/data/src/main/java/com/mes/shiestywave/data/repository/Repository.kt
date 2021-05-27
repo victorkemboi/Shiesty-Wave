@@ -16,7 +16,8 @@ import kotlinx.coroutines.flow.flow
 
 interface ArtistRepository : BaseRepository<Artist> {
     fun fetchAllArtists(): Flow<PagingData<Artist>>
-    fun fetchArtistSongs(artist: String): Flow<PagingData<Song>>
+    fun fetchPagedArtistSongs(artist: String): Flow<PagingData<Song>>
+    fun fetchArtistSongs(artist: String): Flow<List<Song>>
     suspend fun getArtist(artist: String): Artist?
 }
 
@@ -39,7 +40,7 @@ class ArtistRepositoryImpl(
         ).flow
 
     @ExperimentalPagingApi
-    override fun fetchArtistSongs(artist: String): Flow<PagingData<Song>> =
+    override fun fetchPagedArtistSongs(artist: String): Flow<PagingData<Song>> =
         Pager(
             config = PagingConfig(
                 pageSize = 50,
@@ -48,9 +49,12 @@ class ArtistRepositoryImpl(
             ),
             remoteMediator = null,
             pagingSourceFactory = {
-                songDao.fetchArtistSongs(artist = artist)
+                songDao.fetchPagedArtistSongs(artist = artist)
             }
         ).flow
+
+    override fun fetchArtistSongs(artist: String): Flow<List<Song>> =
+        songDao.fetchPagedArtistSongs(artist = artist)
 
     override suspend fun getArtist(artist: String): Artist? =
         artistDao.fetchArtistById(artist)

@@ -24,6 +24,13 @@ data class Artist(
     val id: String = generateLocalID()
 )
 
+data class ArtistCover(
+    var uri: String,
+    var artistId: String,
+    @PrimaryKey
+    val id: String = generateLocalID()
+)
+
 val unknownArtist = Artist(
     name = "Unknown Artist",
 )
