@@ -46,6 +46,9 @@ android {
 }
 
 dependencies {
+
+    api(project(BuildModules.dataModule))
+
     implementation(Libraries.coreKtx)
     implementation(Libraries.appCompat)
     implementation(Libraries.material)
@@ -62,6 +65,8 @@ dependencies {
 
     implementation(Libraries.accompanist)
     implementation(Libraries.accompanistSystemUiController)
+
+    implementation(Libraries.timber)
 
     testImplementation(TestLibraries.jUnit)
     androidTestImplementation(TestLibraries.jUnitExt)

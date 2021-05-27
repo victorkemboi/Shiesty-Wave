@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "Shiesty Wave"
 include(":app")
 include(":onboarding")
+include(":internal:data")

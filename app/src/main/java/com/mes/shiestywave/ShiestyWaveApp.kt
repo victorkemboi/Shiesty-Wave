@@ -48,7 +48,7 @@ fun ShiestyWaveApp() {
 //                    scaffoldState = scaffoldState
 //                )
 //            }
-            LoginScreen(navController = navController)
+            LoginScreen()
         }
     }
 }

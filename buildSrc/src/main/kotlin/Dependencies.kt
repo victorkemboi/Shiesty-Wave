@@ -21,6 +21,17 @@ object Versions {
     const val koin = "3.0.2"
     const val koinCompose = "3.0.1"
     const val accompanist = "0.10.0"
+
+    const val truth = "1.0.1"
+
+    const val room = "2.4.0-alpha02"
+
+    // Joda Time
+    const val joda = "2.10.10"
+
+    const val pagingCompose = "1.0.0-alpha09"
+
+    const val timber = "4.7.1"
 }
 
 object BuildPlugins {
@@ -28,6 +39,7 @@ object BuildPlugins {
     const val dynamicFeature = "com.android.dynamic-feature"
     const val androidLibrary = "com.android.library"
     const val kapt = "kotlin-kapt"
+    const val ksp = "com.google.devtools.ksp"
     const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
     const val detektPlugin = "io.gitlab.arturbosch.detekt"
     const val dokkaPlugin = "org.jetbrains.dokka"
@@ -74,6 +86,19 @@ object Libraries {
     const val accompanist = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
     const val accompanistSystemUiController =
         "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
+
+    // Room DB and Store
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val room = "androidx.room:room-ktx:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+
+    // Joda Time
+    const val joda = "joda-time:joda-time:${Versions.joda}"
+
+    // paging compose
+    const val pagingCompose = "androidx.paging:paging-compose:${Versions.pagingCompose}"
+
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
 
 object TestLibraries {
@@ -81,6 +106,7 @@ object TestLibraries {
     const val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+    const val truth = "com.google.truth:truth:${Versions.truth}"
 }
 
 object BuildModules {
