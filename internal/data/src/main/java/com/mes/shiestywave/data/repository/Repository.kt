@@ -13,6 +13,7 @@ import com.mes.shiestywave.data.data.local.entity.Song
 import kotlinx.coroutines.flow.Flow
 
 interface ArtistRepository {
+    fun fetchAllArtists(): Flow<PagingData<Artist>>
     fun fetchArtistSongs(artist: String): Flow<PagingData<Song>>
     suspend fun getArtist(artist: String): Artist?
 }
@@ -21,6 +22,20 @@ class ArtistRepositoryImpl(
     private val artistDao: ArtistDao,
     private val songDao: SongDao
 ) : ArtistRepository {
+    @ExperimentalPagingApi
+    override fun fetchAllArtists(): Flow<PagingData<Artist>> =
+        Pager(
+            config = PagingConfig(
+                pageSize = 50,
+                enablePlaceholders = false,
+                prefetchDistance = 2
+            ),
+            remoteMediator = null,
+            pagingSourceFactory = {
+                artistDao.fetchAllArtists()
+            }
+        ).flow
+
     @ExperimentalPagingApi
     override fun fetchArtistSongs(artist: String): Flow<PagingData<Song>> =
         Pager(

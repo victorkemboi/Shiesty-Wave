@@ -59,6 +59,7 @@ dependencies {
     implementation(Libraries.lifecycleRuntimeKtx)
     implementation(Libraries.composeActivity)
     implementation(Libraries.composeNavigation)
+    implementation(Libraries.pagingCompose)
 
     // DI - KOIN
     implementation(Libraries.koin)

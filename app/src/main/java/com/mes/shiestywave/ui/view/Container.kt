@@ -5,12 +5,12 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -18,11 +18,17 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemsIndexed
 import com.mes.shiestywave.ShiestyWaveApp
-import com.mes.shiestywave.data.data.local.entity.Song
-import com.mes.shiestywave.ui.theme.Red500
+import com.mes.shiestywave.domain.model.SongUiModel
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
-import com.mes.shiestywave.ui.theme.Teal200
+import com.mes.shiestywave.ui.viewmodel.SongViewModel
+import com.mes.shiestywave.utils.getCharacterBackground
+import kotlinx.coroutines.flow.Flow
+import org.koin.androidx.compose.getViewModel
+import java.util.* // ktlint-disable no-wildcard-imports
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,74 +54,54 @@ fun DefaultPreview() {
 
 @Composable
 @Preview
-fun LoginScreen() {
-    val context = LocalContext.current
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start
-    ) {
-        Card(
-            backgroundColor = Teal200,
-            shape = RoundedCornerShape(3.dp),
-            elevation = 8.dp,
-            modifier = Modifier
-                .clickable(
-                    onClick = {
-                        // this will navigate to second screen
-                        // navController.navigate("second_screen")
+fun HomeScreen() {
+    val songViewModel: SongViewModel = getViewModel()
+    Songs(songs = songViewModel.getSongs())
+}
 
-                        Toast
-                            .makeText(
-                                context,
-                                "Diamonds Dancing",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
-                    }
-                )
-        ) {
-            Text(
-                text = "YSL ft Travis Scott",
-                color = Color.White,
-                style = TextStyle(textAlign = TextAlign.Center),
-                modifier = Modifier.padding(12.dp)
-            )
-        }
-
-        Card(
-            backgroundColor = Red500,
-            shape = RoundedCornerShape(3.dp),
-            elevation = 8.dp,
-            modifier = Modifier
-                .clickable(
-                    onClick = {
-                        // this will navigate to second screen
-                        // navController.navigate("second_screen")
-
-                        Toast
-                            .makeText(
-                                context,
-                                "Shit Crazy",
-                                Toast.LENGTH_SHORT
-                            )
-                            .show()
-                    }
-                )
-        ) {
-            Text(
-                text = "Gucci ft Big30",
-                color = Color.White,
-                style = TextStyle(textAlign = TextAlign.Center),
-                modifier = Modifier.padding(12.dp)
-            )
+@Composable
+fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
+    val lazySongs = songs.collectAsLazyPagingItems()
+    LazyColumn {
+        itemsIndexed(lazySongs) { _, item ->
+            if (item != null) {
+                Song(song = item)
+            }
         }
     }
 }
 
 @Composable
-fun Song(song: Song, featuredArtists: List<>) {
+fun Song(song: SongUiModel.SongModel) {
+    val context = LocalContext.current
+    Card(
+        backgroundColor = getCharacterBackground(
+            song.song.name.first().toString().capitalize(Locale.ROOT)
+        ),
+        shape = RoundedCornerShape(3.dp),
+        elevation = 8.dp,
+        modifier = Modifier
+            .clickable(
+                onClick = {
+                    // this will navigate to second screen
+                    // navController.navigate("second_screen")
 
+                    Toast
+                        .makeText(
+                            context,
+                            "I am a song!",
+                            Toast.LENGTH_SHORT
+                        )
+                        .show()
+                }
+            )
+    ) {
+
+        Text(
+            color = Color.White,
+            style = TextStyle(textAlign = TextAlign.Center),
+            modifier = Modifier.padding(12.dp),
+            text = song.title
+        )
+    }
 }
-
-

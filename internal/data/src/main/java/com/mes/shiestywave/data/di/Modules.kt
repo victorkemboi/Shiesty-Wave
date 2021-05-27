@@ -28,7 +28,7 @@ private val daoModule: Module = module {
 }
 
 private val repositoryModule: Module = module {
-    single<ArtistRepository> { ArtistRepositoryImpl(get()) }
+    single<ArtistRepository> { ArtistRepositoryImpl(get(), get()) }
     single<FeaturedArtistRepository> { FeaturedArtistRepositoryImpl(get()) }
     single<SongRepository> { SongRepositoryImpl(get()) }
 }

@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.mes.shiestywave.ui.theme.ShiestyWaveTheme
-import com.mes.shiestywave.ui.view.LoginScreen
+import com.mes.shiestywave.ui.view.HomeScreen
 
 @Composable
 fun ShiestyWaveApp() {
@@ -48,7 +48,7 @@ fun ShiestyWaveApp() {
 //                    scaffoldState = scaffoldState
 //                )
 //            }
-            LoginScreen()
+            HomeScreen()
         }
     }
 }

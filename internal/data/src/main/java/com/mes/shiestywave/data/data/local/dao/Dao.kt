@@ -14,6 +14,9 @@ interface ArtistDao : BaseDao<Artist> {
 
     @Query("SELECT * FROM Artist WHERE id =:id LIMIT 1")
     suspend fun fetchArtistById(id: String): Artist?
+
+    @Query("SELECT * FROM Artist")
+    fun fetchAllArtists(): PagingSource<Int, Artist>
 }
 
 @Dao

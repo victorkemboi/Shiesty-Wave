@@ -2,14 +2,18 @@ package com.mes.shiestywave.domain.model
 
 import com.mes.shiestywave.data.data.local.entity.Artist
 import com.mes.shiestywave.data.data.local.entity.Song
+import com.mes.shiestywave.data.data.local.entity.unknownArtist
 
 sealed class SongUiModel {
 
     class SongModel(
         val song: Song,
         val artist: Artist?,
-        val featuredArtist: List<Artist>
-    ) : SongUiModel()
+        val featuredArtists: List<Artist>
+    ) : SongUiModel() {
+        val title = "${artist?.name ?: unknownArtist.name} - ${song.name} ft " +
+            featuredArtists.joinToString(separator = ", ").removeSuffix(", ")
+    }
 
     class SongSeparatorModel(val description: String) : SongUiModel()
 }

@@ -64,6 +64,3 @@ dependencies {
     testImplementation(TestLibraries.jUnit)
     testImplementation(TestLibraries.truth)
 }
-repositories {
-    mavenCentral()
-}

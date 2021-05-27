@@ -3,6 +3,8 @@ package com.mes.shiestywave
 import android.app.Application
 import androidx.annotation.Nullable
 import com.mes.shiestywave.data.di.dataModules
+import com.mes.shiestywave.di.appModules
+import com.mes.shiestywave.domain.di.domainModules
 import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -25,6 +27,8 @@ class App : Application() {
                 androidContext(applicationContext)
                 val modules = mutableListOf<Module>().apply {
                     addAll(dataModules)
+                    addAll(appModules)
+                    addAll(domainModules)
                 }
                 modules(modules)
             }
