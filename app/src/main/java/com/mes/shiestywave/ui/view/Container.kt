@@ -26,9 +26,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.mes.shiestywave.R
 import com.mes.shiestywave.ShiestyWaveApp
 import com.mes.shiestywave.domain.model.SongUiModel
@@ -94,10 +97,17 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
 @Composable
 fun Songs(songs: Flow<PagingData<SongUiModel.SongModel>>) {
     val lazySongs = songs.collectAsLazyPagingItems()
-    LazyColumn {
-        itemsIndexed(lazySongs) { index, item ->
-            if (item != null) {
-                Song(song = item, index = index + 1)
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(
+            lazySongs.loadState.append == LoadState.Loading
+        ),
+        onRefresh = { lazySongs.refresh() },
+    ) {
+        LazyColumn {
+            itemsIndexed(lazySongs) { index, item ->
+                if (item != null) {
+                    Song(song = item, index = index + 1)
+                }
             }
         }
     }

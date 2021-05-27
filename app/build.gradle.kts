@@ -70,6 +70,7 @@ dependencies {
     implementation(Libraries.koinCompose)
 
     implementation(Libraries.accompanist)
+    implementation(Libraries.swipeRefresh)
     implementation(Libraries.accompanistSystemUiController)
 
     implementation(Libraries.timber)

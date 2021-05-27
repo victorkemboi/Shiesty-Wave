@@ -87,6 +87,7 @@ object Libraries {
     const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koinCompose}"
 
     const val accompanist = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
+    const val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
     const val accompanistSystemUiController =
         "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
 
